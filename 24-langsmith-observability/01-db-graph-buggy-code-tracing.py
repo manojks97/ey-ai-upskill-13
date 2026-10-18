@@ -24,7 +24,7 @@ from typing import TypedDict
 from langsmith import traceable
 import os
 
-path = r"E:\Lenovo Ideapad 330\company-material\digital-workforce-transformation\ai-upskill-12\key-vault\langsmith\api.key"
+path = r"E:\Lenovo Ideapad 330\company-material\digital-workforce-transformation\ai-ey-upskill-13\key-vault\langsmith\api.key"
 with open(path) as f:
     langchain_api_key = f.read().strip()    
 
@@ -296,7 +296,7 @@ def route(state: AgentState):
     #     return END
     # #-------------------------------------------------------
     else:
-        # state["retries"] += 1
+        state["retries"] += 1
         print(f"ROUTER INCREMENTED RETRIES TO {state['retries']}")
         if state["retries"] >= state["__max_retries__"]:
             print("ROUTER DETECTED MAX RETRIES! Ending execution.")
@@ -305,8 +305,8 @@ def route(state: AgentState):
                 return "planner"
             else:
                 return END
-        # return "planner"
-        return { **state, "retries": state["retries"] + 1 }
+        return "planner"
+        # return { **state, "retries": state["retries"] + 1 }
 
 # ============================================================
 # GRAPH BUILDER
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     setup_db()
     seed_data()
 
-    with open(r"E:\Lenovo Ideapad 330\company-material\digital-workforce-transformation\ai-upskill-12\key-vault\groq\api.key") as f:
+    with open(r"E:\Lenovo Ideapad 330\company-material\digital-workforce-transformation\ai-ey-upskill-13\key-vault\groq\api.key") as f:
         api_key = f.read().strip()
 
     llm = get_llm(api_key)
