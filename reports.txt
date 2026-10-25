@@ -1,0 +1,135 @@
+1. How do I disable SMBv1 according to  the CIS benchmark?
+
+Response
+PS C:\Users\user\manoj-ai\shared\ey-ai-upskill-13\31-mcp-demo> python .\mcp-cyber-client.py
+Available Tools
+----------------
+cis_information
+lookup_cve
+lookup_cisa_kev
+lookup_attack
+lookup_epss
+
+===========================
+To disable SMBv1 according to the CIS benchmark, follow these steps:
+
+1. Obtain the SecGuide.admx/adml Group Policy template from Microsoft, as the required policy is not present by default.
+2. Open the Group Policy Editor and navigate to:
+   Computer Configuration → Policies → Administrative Templates → MS Security Guide.
+3. Find and set the "Configure SMB v1 server" policy to Disabled.
+
+This aligns with CIS Control v8 18.4.3 and helps reduce your attack surface by disabling an outdated and vulnerable protocol. Be sure to test this change for compatibility with your systems before deploying it widely.
+
+===================================================================================================================================
+2. What does CIS recommend for Windows password policies?
+
+Response
+Available Tools
+----------------
+cis_information
+lookup_cve
+lookup_cisa_kev
+lookup_attack
+lookup_epss
+
+===========================
+CIS (Center for Internet Security) recommends the following for Windows password policies:
+
+- Minimum Password Length: Set to 14 characters for accounts not using Multi-Factor Authentication (MFA), and 8 characters for accounts using MFA.
+- Password Complexity: Require passwords to include at least three of the following: uppercase letters, lowercase letters, digits, and special characters.
+- Password Expiration: Require password changes every 30 days or fewer (but not 0 days).
+- Password History: Remember at least 24 previous passwords to prevent reuse.
+- Regular Review: Periodically review and update password policies to ensure they align with best practices and compliance needs.
+
+These recommendations are designed to strengthen password security and reduce the risk of unauthorized access.
+
+===================================================================================================================================
+
+3.Show the latest vulnerabilities affecting Windows SMB
+
+Response
+lookup_cisa_kev
+lookup_attack
+lookup_epss
+
+===========================
+Here are some of the latest and notable vulnerabilities affecting Windows SMB:
+
+From CISA Known Exploited Vulnerabilities (recent and relevant):
+
+1. CVE-2025-33073 (Microsoft Windows SMB Client)
+   - Description: Improper access control vulnerability that could allow privilege escalation. An attacker could execute a specially crafted malicious script to coerce the victim machine to connect back to the attack system using SMB and authenticate.
+   - Action: Apply mitigations per vendor instructions or discontinue use if mitigations are unavailable.
+
+2. CVE-2019-0703 (Windows SMB Server)
+   - Description: Information disclosure vulnerability in the way Windows SMB Server handles certain requests, potentially leading to information disclosure from the server.
+   - Action: Apply updates per vendor instructions.
+
+From the NVD (older but notable):
+
+- CVE-1999-1387, CVE-1999-0225, CVE-1999-0391, CVE-2000-0544, CVE-2000-1227: These are older vulnerabilities affecting legacy Windows SMB implementations, mostly resulting in denial of service or authentication issues.
+
+If you need more details on any specific CVE or want to know about the latest patches and mitigations, let me know!
+===================================================================================================================================
+
+4. List the latest critical CVEs for OpenSSL
+
+Response
+Available Tools
+----------------
+cis_information
+lookup_cve
+lookup_cisa_kev
+lookup_attack
+lookup_epss
+
+===========================
+The latest critical CVEs for OpenSSL are not shown in the results above—those are older vulnerabilities. Would you like me to search for more recent and critical OpenSSL CVEs, or are you interested in historical vulnerabilities as well? Please specify if you want only those rated as "critical" and from recent years.
+
+===================================================================================================================================
+
+5. How can I secure Windows SMB against recent attacks?
+
+Response
+Available Tools
+----------------
+cis_information
+lookup_cve
+lookup_cisa_kev
+lookup_attack
+lookup_epss
+
+===========================
+Securing Windows SMB (Server Message Block) is crucial, as it is a common target for attackers due to its widespread use for file and printer sharing. Here are key steps to secure SMB against recent attacks:
+
+### 1. **Update and Patch**
+- **Apply all security updates** for Windows and SMB services. Many SMB vulnerabilities (e.g., EternalBlue, SMBGhost) have been patched by Microsoft.
+- **Disable SMBv1**: This legacy protocol is insecure and should be disabled unless absolutely necessary.
+
+### 2. **Restrict SMB Access**
+- **Limit SMB to trusted networks** only. Block SMB ports (TCP 445, 139; UDP 137, 138) at the network perimeter.
+- **Use firewalls** to restrict which devices can communicate over SMB.
+
+### 3. **Authentication and Encryption**
+- **Require strong authentication** (NTLMv2 or Kerberos).
+- **Enable SMB signing** to prevent man-in-the-middle attacks.
+- **Enable SMB encryption** (available in SMB 3.0 and later) for sensitive data.
+
+### 4. **Hardening and Best Practices**
+- **Disable guest access** and anonymous logins.
+- **Remove unnecessary SMB shares** and restrict permissions on existing shares.
+- **Monitor SMB traffic** for unusual activity (e.g., mass file access, brute-force attempts).
+
+### 5. **CIS Benchmarks and Controls**
+- Follow [CIS Microsoft Windows Benchmarks](https://www.cisecurity.org/cis-benchmarks/) for detailed, step-by-step hardening guidance.
+- Implement CIS Controls such as:
+  - Inventory and control of hardware/software assets.
+  - Secure configuration for network devices and endpoints.
+  - Continuous vulnerability management.
+
+### 6. **Incident Response**
+- **Monitor for known exploited vulnerabilities** (e.g., via CISA KEV list).
+- **Have an incident response plan** for SMB-related breaches.
+
+Would you like specific configuration steps, recent CVEs affecting SMB, or CIS Benchmark recommendations for SMB security?
+                   
